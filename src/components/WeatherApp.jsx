@@ -2,8 +2,20 @@ import sunny from '../assets/img/sunny.png';
 import cloudy from '../assets/img/cloudy.png';
 import rainy from '../assets/img/rainy.png';
 import snowy from '../assets/img/snowy.png';
+import { useState } from 'react';
 
 const WeatherApp = () => {
+  const [data, setData] = useState({});
+  const api_key = 'c49cdadb882e933c84f6fd6b9e3081aa';
+
+  const search = async () => {
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=Vilnius&units=Metric&appid=${api_key}`;
+    const res = await fetch(url);
+    const searhData = await res.json();
+    console.log(searhData);
+    setData(searhData);
+  };
+
   return (
     <div className="container">
       <div className="weather-app">
